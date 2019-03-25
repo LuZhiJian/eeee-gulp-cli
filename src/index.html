@@ -1,20 +1,17 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-  <link rel="stylesheet" href="./css/index.css">
-  <title>体讯</title>
-</head>
+@include('head.html', {"title": "index"})
 
 <body>
+  <!-- @include('Sidebar.html') -->
   <div class="main-wrapper">
-    测试
-    <a href="./info.html">info</a>
+    @include('header.html')
+    <div class="main-content">
+      <img src="./images/img2.png"> 我是谁
+    </div>
+    @include('footer.html')
   </div>
+  <script src="./js/index.js"></script>
 </body>
 
 </html>

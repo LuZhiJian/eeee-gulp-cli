@@ -1,0 +1,171 @@
+@charset 'utf-8';
+
+// 清楚浮动
+@mixin clearfix {
+  zoom: 1;
+
+  &:after {
+    display: block;
+    height: 0;
+    clear: both;
+    content: "";
+    visibility: hidden;
+  }
+}
+
+@mixin abs-center {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+// 圆角
+@mixin radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+}
+
+// 盒子大小
+@mixin wh( $w, $h ) {
+  width: $w;
+  height: $h;
+  line-height: $h;
+}
+
+// 盒子阴影
+@mixin shadow($x, $y, $blur, $color) {
+  -webkit-box-shadow: $x $y $blur $color;
+  -moz-box-shadow: $x $y $blur $color;
+  box-shadow: $x $y $blur $color;
+}
+
+//文字溢出
+@mixin text-overflow() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+//文本省略
+@mixin text-hidden($num) {
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp:$num;
+  display: -webkit-box;
+}
+
+@mixin appearance($s) {
+  -webkit-appearance: $s;
+  -moz-appearance: $s;
+  appearance: $s;
+}
+
+// 透明度
+@mixin opacity($opacity) {
+  opacity: $opacity / 100;
+  filter: alpha(opacity=$opacity);
+}
+
+// 动画时间
+@mixin transition($time) {
+  -webkit-transition: $time;
+  -moz-transition: $time;
+  transition: $time;
+}
+
+// placeholder
+@mixin placeholder-color($color) {
+
+  input::-webkit-input-placeholder,
+  textarea::-webkit-input-placeholder {
+    color: $color;
+  }
+
+  input:-moz-placeholder,
+  textarea:-moz-placeholder {
+    color: $color;
+  }
+
+  input::-moz-placeholder,
+  textarea::-moz-placeholder {
+    color: $color;
+  }
+
+  input:-ms-input-placeholder,
+  textarea:-ms-input-placeholder {
+    color: $color;
+  }
+}
+
+@mixin bg($url) {
+  background: url($url) no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+//渐变
+@mixin linear-gradient($toward, $startColor, $endColor) {
+  background: -webkit-linear-gradient($toward, $startColor, $endColor);
+  background: linear-gradient($toward, $startColor, $endColor);
+}
+
+// 动画animation Mixins
+// --------------------------------------------------
+
+@mixin animation($animation) {
+  animation: $animation;
+  -webkit-animation: $animation;
+}
+
+@mixin animation-duration($duration) {
+  animation-duration: $duration;
+  -webkit-animation-duration: $duration;
+}
+
+@mixin animation-direction($direction) {
+  animation-direction: $direction;
+  -webkit-animation-direction: $direction;
+}
+
+@mixin animation-timing-function($animation-timing) {
+  -webkit-animation-timing-function: $animation-timing;
+  animation-timing-function: $animation-timing;
+}
+
+@mixin animation-fill-mode($fill-mode) {
+  -webkit-animation-fill-mode: $fill-mode;
+  animation-fill-mode: $fill-mode;
+}
+
+@mixin animation-name($name...) {
+  -webkit-animation-name: $name;
+  animation-name: $name;
+}
+
+@mixin animation-iteration-count($count) {
+  -webkit-iteration-count: $count;
+  animation-iteration-count: $count;
+}
+
+@mixin animation-fill-mode($mode) {
+  -webkit-animation-fill-mode: $mode;
+  animation-fill-mode: $mode;
+}
+
+/*
+ * $duration 规定完成动画所花费的时间 (3s)
+ * $timing 规定动画的速度曲线 (linear, ease, ease-in, ease-out, ease-in-out, cubic-bezier(n, n, n, n) n = 0~1)
+ * $count 定义动画的播放次数 (n, infinite 无限次)
+ * $mode 规定动画在播放之前或之后，其动画效果是否可见 (none | forwards | backwards | both)
+ */
+@mixin animation($name, $duration, $timing, $count, $mode) {
+  @include animation-name($name);
+  @include animation-duration($duration);
+  @include animation-timing-function($timing);
+  @include animation-iteration-count($count);
+  @include animation-fill-mode($mode);
+}
