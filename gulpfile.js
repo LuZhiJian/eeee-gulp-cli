@@ -61,10 +61,11 @@ gulp.task('sass', function () {
 
 // 将所有js文件连接为一个文件并压缩，存到public/js
 gulp.task('uglifyJs', function () {
-  gulp.src(['src/js/*.js'])
-    .pipe(changed('dev/js', {
+  gulp.src(['src/js/**/*.js'])
+    .pipe(changed('dev/js/**/', {
       hasChanged: changed.compareSha1Digest
     }))
+    .pipe(plumber())
     .pipe(uglify())
     .pipe(gulp.dest('dev/js'))
     .pipe(browserSync.reload({
@@ -75,6 +76,10 @@ gulp.task('uglifyJs', function () {
 //压缩  img文件
 gulp.task('testImagemin', function () {
   gulp.src('src/images/**/*.{png,jpg,gif,jpeg,ico}')
+    .pipe(changed('dev/images/**/*', {
+      hasChanged: changed.compareSha1Digest
+    }))
+    .pipe(plumber())
     .pipe(imagemin({
       optimizationLevel: 5, //类型：Number  默认：3  取值范围：0-7（优化等级）
       progressive: true, //类型：Boolean 默认：false 无损压缩jpg图片
@@ -100,14 +105,14 @@ gulp.task('watch', function () {
     }
   });
 
-  var watchJs = gulp.watch('src/js/*.js', ['uglifyJs']);
+  var watchJs = gulp.watch('src/js/**/*.js', ['uglifyJs']);
   var watchCss = gulp.watch('src/styles/*.scss', ['sass']);
   var watchImg = gulp.watch('src/images/**/*', ['testImagemin']);
-  var watchHtml = gulp.watch('src/*.html', ['htmlMin']);
+  var watchHtml = gulp.watch('src/**/*.html', ['htmlMin']);
 
   watchJs.on('change', function (event) {
     if (event.type === 'deleted') {
-      del('dev/js/' + path.basename(event.path));
+      del('dev/js/**/' + path.basename(event.path));
     }
   });
 
@@ -120,7 +125,7 @@ gulp.task('watch', function () {
 
   watchImg.on('change', function (event) {
     if (event.type === 'deleted') {
-      del('dev/images/' + path.basename(event.path));
+      del('dev/images/**/' + path.basename(event.path));
     }
   });
 

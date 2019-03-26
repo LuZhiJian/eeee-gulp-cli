@@ -3,15 +3,13 @@
 @include('head.html', {"title": "index"})
 
 <body>
-  <!-- @include('Sidebar.html') -->
   <div class="main-wrapper">
     @include('header.html')
     <div class="main-content">
       <img src="./images/img2.png"> 我是谁
     </div>
-    @include('footer.html')
+    @include('footer.html', {"title": "index"})
   </div>
-  <script src="./js/index.js"></script>
 </body>
 
 </html>

@@ -1,4 +1,9 @@
 {
+  "name": "eeee-gulp-cli",
+  "version": "1.0.1",
+  "main": "index.js",
+  "author": "black24",
+  "license": "MIT",
   "dependencies": {
     "browser-sync": "^2.26.3",
     "del": "^4.0.0",
@@ -18,10 +23,5 @@
     "gulp-uglify": "^3.0.2",
     "gulp-watch": "^5.0.1",
     "path": "^0.12.7"
-  },
-  "name": "gulp_test",
-  "version": "1.0.0",
-  "main": "index.js",
-  "author": "luzhijian",
-  "license": "MIT"
+  }
 }
